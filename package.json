@@ -10,13 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.0",
     "@mui/material": "5.15.12",
+    "core-js": "^3.37.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.23.1",
-    "tss-react": "^4.9.10"
+    "tss-react": "^4.9.10",
+    "vite-plugin-babel": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "18.2.37",
