@@ -1,13 +1,6 @@
 import { Grow, Paper } from "@mui/material";
 import { makeStyles } from "../styles";
-import {
-  RefObject,
-  createRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { RefObject, createRef, useCallback, useEffect, useRef } from "react";
 import wallpaper from "../assets/wallpaper-min.webp";
 import nestOneGroup from "../assets/Nest_One_group-min.webp";
 import tvTower from "../assets/tv_tower-min.webp";
@@ -19,7 +12,6 @@ import nbuGroupFog from "../assets/Nbu_group_fog-min.webp";
 import hiltonGroup from "../assets/Hilton_group-min.webp";
 import hiltonGroupFog from "../assets/Hilton_group_fog-min.webp";
 import throttle from "../utils/throttle";
-import LoadingPage from "./LoadingPage";
 type ImgRef = RefObject<HTMLImageElement>;
 
 const useStyles = makeStyles()((theme) => ({
@@ -264,17 +256,6 @@ const useStyles = makeStyles()((theme) => ({
 
 const Parallax = () => {
   const { classes, cx } = useStyles();
-  const [imagesLoaded, setImagesLoaded] = useState(1);
-  const totalImages = 10;
-
-  const handleImageLoad = () => {
-    if (imagesLoaded > 2) {
-      setTimeout(() => {
-        setImagesLoaded(11);
-      }, 5000);
-    }
-    setImagesLoaded((prev) => prev + 1);
-  };
   const parallaxRefs: Array<RefObject<HTMLImageElement>> = [
     ...new Array(10),
   ].map(() => createRef());
@@ -355,23 +336,16 @@ const Parallax = () => {
       window.removeEventListener("deviceorientation", handleOrientation);
     };
   }, [parallaxRefs, updateParallaxEffect]);
-  console.log({ imagesLoaded });
   return (
     <Grow in={true} style={{ transformOrigin: "center center" }} timeout={500}>
       <Paper ref={mainRef} className={classes.paper}>
-        <Paper
-          className={cx(
-            classes.paper,
-            imagesLoaded < totalImages ? classes.paper_loading : ""
-          )}
-        >
+        <Paper className={cx(classes.paper)}>
           <div className={classes.vignet}></div>
           <h1 className={classes.text}>Tashkent</h1>
           <img
             loading="lazy"
             onLoad={() => {
               console.log("wallpaper loaded");
-              handleImageLoad();
             }}
             src={wallpaper}
             alt="wallpaper"
@@ -390,7 +364,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("nestonegroup");
-              handleImageLoad();
             }}
             src={nestOneGroup}
             className={classes.nestOneGroup}
@@ -409,7 +382,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("tvtower");
-              handleImageLoad();
             }}
             src={tvTower}
             className={classes.tvTower}
@@ -428,7 +400,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("fog4");
-              handleImageLoad();
             }}
             src={fog4}
             className={classes.fog4}
@@ -447,7 +418,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("intercontinental");
-              handleImageLoad();
             }}
             src={interContinental}
             className={classes.interContinental}
@@ -466,7 +436,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("intercontinentalfog");
-              handleImageLoad();
             }}
             src={interContinentalFog}
             className={classes.interContinentalFog}
@@ -483,7 +452,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("nbugroup");
-              handleImageLoad();
             }}
             src={nbuGroup}
             className={classes.nbuGroup}
@@ -502,7 +470,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("nbugroupfog");
-              handleImageLoad();
             }}
             src={nbuGroupFog}
             className={classes.nbuGroupFog}
@@ -521,7 +488,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("hiltongroup");
-              handleImageLoad();
             }}
             src={hiltonGroup}
             className={classes.hiltonGroup}
@@ -540,7 +506,6 @@ const Parallax = () => {
             loading="lazy"
             onLoad={() => {
               console.log("hiltongroupfog");
-              handleImageLoad();
             }}
             src={hiltonGroupFog}
             className={classes.hiltonGroupFog}
@@ -556,15 +521,6 @@ const Parallax = () => {
             aria-hidden
           />
         </Paper>
-        {imagesLoaded < totalImages ? (
-          <LoadingPage
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-            }}
-          />
-        ) : null}
       </Paper>
     </Grow>
   );
