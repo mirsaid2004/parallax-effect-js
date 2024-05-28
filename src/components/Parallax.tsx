@@ -264,7 +264,7 @@ const useStyles = makeStyles()((theme) => ({
 
 const Parallax = () => {
   const { classes, cx } = useStyles();
-  const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(1);
   const totalImages = 10;
 
   const handleImageLoad = () => {
