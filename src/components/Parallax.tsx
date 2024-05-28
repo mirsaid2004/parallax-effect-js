@@ -268,6 +268,11 @@ const Parallax = () => {
   const totalImages = 10;
 
   const handleImageLoad = () => {
+    if (imagesLoaded > 2) {
+      setTimeout(() => {
+        setImagesLoaded(11);
+      }, 5000);
+    }
     setImagesLoaded((prev) => prev + 1);
   };
   const parallaxRefs: Array<RefObject<HTMLImageElement>> = [
