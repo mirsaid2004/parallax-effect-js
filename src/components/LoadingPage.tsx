@@ -38,7 +38,7 @@ const useStyles = makeStyles()((theme) => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "30px",
       letterSpacing: "calc(18ch + 10px)",
-      width: "18ch",
+      width: "16ch",
       textShadow:
         "calc(0 * 18ch) 0 #fff, calc(-1 * 18ch) 0 #fff, calc(-2 * 18ch) 0 #fff, calc(-3 * 18ch) 0 #fff, calc(-4 * 18ch) 0 #fff, calc(-5 * 18ch) 0 #fff, calc(-6 * 18ch) 0 #fff, calc(-7 * 18ch) 0 #fff, calc(-8 * 18ch) 0 #fff, calc(-9 * 18ch) 0 #fff",
     },

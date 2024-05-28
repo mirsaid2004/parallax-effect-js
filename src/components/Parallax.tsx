@@ -364,7 +364,10 @@ const Parallax = () => {
           <h1 className={classes.text}>Tashkent</h1>
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("wallpaper loaded");
+              handleImageLoad();
+            }}
             src={wallpaper}
             alt="wallpaper"
             className={classes.wallpaperImg}
@@ -380,7 +383,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("nestonegroup");
+              handleImageLoad();
+            }}
             src={nestOneGroup}
             className={classes.nestOneGroup}
             alt="Nest One"
@@ -396,7 +402,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("tvtower");
+              handleImageLoad();
+            }}
             src={tvTower}
             className={classes.tvTower}
             alt="Nest One"
@@ -412,7 +421,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("fog4");
+              handleImageLoad();
+            }}
             src={fog4}
             className={classes.fog4}
             alt="Fog_4"
@@ -428,7 +440,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("intercontinental");
+              handleImageLoad();
+            }}
             src={interContinental}
             className={classes.interContinental}
             alt="InterContinental"
@@ -444,7 +459,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("intercontinentalfog");
+              handleImageLoad();
+            }}
             src={interContinentalFog}
             className={classes.interContinentalFog}
             alt="InterContinentalFog"
@@ -458,7 +476,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("nbugroup");
+              handleImageLoad();
+            }}
             src={nbuGroup}
             className={classes.nbuGroup}
             alt="NbuGroup"
@@ -474,7 +495,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("nbugroupfog");
+              handleImageLoad();
+            }}
             src={nbuGroupFog}
             className={classes.nbuGroupFog}
             alt="NbuGroupFog"
@@ -490,7 +514,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("hiltongroup");
+              handleImageLoad();
+            }}
             src={hiltonGroup}
             className={classes.hiltonGroup}
             alt="HiltonGroup"
@@ -506,7 +533,10 @@ const Parallax = () => {
           />
           <img
             loading="lazy"
-            onLoad={handleImageLoad}
+            onLoad={() => {
+              console.log("hiltongroupfog");
+              handleImageLoad();
+            }}
             src={hiltonGroupFog}
             className={classes.hiltonGroupFog}
             alt="HiltonGroupFog"
