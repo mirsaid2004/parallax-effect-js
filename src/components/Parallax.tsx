@@ -22,8 +22,8 @@ import hiltonGroupFallback from "../assets/Hilton_group-min.png";
 import hiltonGroupFog from "../assets/Hilton_group_fog-min.webp";
 import hiltonGroupFogFallback from "../assets/Hilton_group_fog-min.png";
 import throttle from "../utils/throttle";
-type ImgRef = RefObject<HTMLImageElement>;
 
+type ImgRef = RefObject<HTMLImageElement>;
 const useStyles = makeStyles()((theme) => ({
   paper: {
     display: "flex",
@@ -337,8 +337,29 @@ const Parallax = () => {
         updateParallaxEffect(gamma * 6, beta * 10);
       }
     }, 100);
+    const requestDeviceOrientationPermission = () => {
+      const deviceorientation = DeviceOrientationEvent as unknown as {
+        requestPermission?: () => Promise<"granted" | "denied">;
+      };
+      if (
+        typeof deviceorientation !== "undefined" &&
+        typeof deviceorientation.requestPermission === "function"
+      ) {
+        deviceorientation
+          .requestPermission()
+          .then((response: string) => {
+            if (response === "granted") {
+              window.addEventListener("deviceorientation", handleOrientation);
+            }
+          })
+          .catch(console.error);
+      } else {
+        // Handle non-iOS 13+ devices
+        window.addEventListener("deviceorientation", handleOrientation);
+      }
+    };
     mainRef?.current?.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("deviceorientation", handleOrientation);
+    requestDeviceOrientationPermission();
 
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
