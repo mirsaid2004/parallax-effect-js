@@ -2,15 +2,25 @@ import { Grow, Paper } from "@mui/material";
 import { makeStyles } from "../styles";
 import { RefObject, createRef, useCallback, useEffect, useRef } from "react";
 import wallpaper from "../assets/wallpaper-min.webp";
+import wallpaperFallback from "../assets/wallpaper-min.jpg";
 import nestOneGroup from "../assets/Nest_One_group-min.webp";
+import nestOneGroupFallback from "../assets/Nest_One_group-min.png";
 import tvTower from "../assets/tv_tower-min.webp";
+import tvTowerFallback from "../assets/tv_tower-min.png";
 import fog4 from "../assets/fog_4-min.webp";
+import fog4Fallback from "../assets/fog_4-min.png";
 import interContinental from "../assets/interContinental-min.webp";
+import interContinentalFallback from "../assets/interContinental-min.png";
 import interContinentalFog from "../assets/interContinental_fog-min.webp";
+import interContinentalFogFallback from "../assets/interContinental_fog-min.png";
 import nbuGroup from "../assets/Nbu_group-min.webp";
+import nbuGroupFallback from "../assets/Nbu_group-min.png";
 import nbuGroupFog from "../assets/Nbu_group_fog-min.webp";
+import nbuGroupFogFallback from "../assets/Nbu_group_fog-min.png";
 import hiltonGroup from "../assets/Hilton_group-min.webp";
+import hiltonGroupFallback from "../assets/Hilton_group-min.png";
 import hiltonGroupFog from "../assets/Hilton_group_fog-min.webp";
+import hiltonGroupFogFallback from "../assets/Hilton_group_fog-min.png";
 import throttle from "../utils/throttle";
 type ImgRef = RefObject<HTMLImageElement>;
 
@@ -342,184 +352,215 @@ const Parallax = () => {
         <Paper className={cx(classes.paper)}>
           <div className={classes.vignet}></div>
           <h1 className={classes.text}>Tashkent</h1>
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("wallpaper loaded");
-            }}
-            src={wallpaper}
-            alt="wallpaper"
-            className={classes.wallpaperImg}
-            ref={parallaxRefs[0] as ImgRef}
-            data-speedx="0.3"
-            data-speedy="0.2"
-            data-centerationx="-16.8%"
-            data-centerationy="-5%"
-            data-speedz="1"
-            data-distance="200"
-            data-rotation="0.5"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("nestonegroup");
-            }}
-            src={nestOneGroup}
-            className={classes.nestOneGroup}
-            alt="Nest One"
-            ref={parallaxRefs[1] as ImgRef}
-            data-speedx="0.13"
-            data-speedy="0.1"
-            data-centerationx="-2%"
-            data-centerationy="-5%"
-            data-speedz="1"
-            data-distance="200"
-            data-rotation="0.2"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("tvtower");
-            }}
-            src={tvTower}
-            className={classes.tvTower}
-            alt="Nest One"
-            ref={parallaxRefs[2] as ImgRef}
-            data-speedx="0.07"
-            data-speedy="0.05"
-            data-centerationx="-12%"
-            data-centerationy="-5%"
-            data-speedz="1"
-            data-distance="200"
-            data-rotation="0.1"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("fog4");
-            }}
-            src={fog4}
-            className={classes.fog4}
-            alt="Fog_4"
-            ref={parallaxRefs[3] as ImgRef}
-            data-speedx="0.18"
-            data-speedy="0.12"
-            data-centerationx="-12%"
-            data-centerationy="-5%"
-            data-speedz="0.1"
-            data-distance="200"
-            data-rotation="0.1"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("intercontinental");
-            }}
-            src={interContinental}
-            className={classes.interContinental}
-            alt="InterContinental"
-            ref={parallaxRefs[4] as ImgRef}
-            data-speedx="0.11"
-            data-speedy="0.1"
-            data-centerationx="-2%"
-            data-centerationy="-5%"
-            data-speedz="1"
-            data-distance="200"
-            data-rotation="0.1"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("intercontinentalfog");
-            }}
-            src={interContinentalFog}
-            className={classes.interContinentalFog}
-            alt="InterContinentalFog"
-            ref={parallaxRefs[5] as ImgRef}
-            data-speedx="0.18"
-            data-speedy="0.12"
-            data-centerationx="-2%"
-            data-centerationy="-5%"
-            data-speedz="0.1"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("nbugroup");
-            }}
-            src={nbuGroup}
-            className={classes.nbuGroup}
-            alt="NbuGroup"
-            ref={parallaxRefs[6] as ImgRef}
-            data-speedx="0.11"
-            data-speedy="0.1"
-            data-centerationx="-2%"
-            data-centerationy="-5%"
-            data-speedz="2"
-            data-distance="200"
-            data-rotation="0.1"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("nbugroupfog");
-            }}
-            src={nbuGroupFog}
-            className={classes.nbuGroupFog}
-            alt="NbuGroupFog"
-            ref={parallaxRefs[7] as ImgRef}
-            data-speedx="0.18"
-            data-speedy="0.12"
-            data-centerationx="-2%"
-            data-centerationy="-5%"
-            data-speedz="0.3"
-            data-distance="200"
-            data-rotation="0.1"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("hiltongroup");
-            }}
-            src={hiltonGroup}
-            className={classes.hiltonGroup}
-            alt="HiltonGroup"
-            ref={parallaxRefs[8] as ImgRef}
-            data-speedx="0.1"
-            data-speedy="0.05"
-            data-centerationx="-15%"
-            data-centerationy="-5%"
-            data-speedz="0.8"
-            data-distance="200"
-            data-rotation="0.1"
-            aria-hidden
-          />
-          <img
-            loading="lazy"
-            onLoad={() => {
-              console.log("hiltongroupfog");
-            }}
-            src={hiltonGroupFog}
-            className={classes.hiltonGroupFog}
-            alt="HiltonGroupFog"
-            ref={parallaxRefs[9] as ImgRef}
-            data-speedx="0.18"
-            data-speedy="0.12"
-            data-centerationx="-2%"
-            data-centerationy="-5%"
-            data-speedz="0.1"
-            data-distance="200"
-            data-rotation="0.01"
-            aria-hidden
-          />
+          <picture>
+            <source srcSet={wallpaper} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("wallpaper loaded");
+              }}
+              src={wallpaperFallback}
+              alt="wallpaper"
+              className={classes.wallpaperImg}
+              ref={parallaxRefs[0] as ImgRef}
+              data-speedx="0.3"
+              data-speedy="0.2"
+              data-centerationx="-16.8%"
+              data-centerationy="-5%"
+              data-speedz="1"
+              data-distance="200"
+              data-rotation="0.5"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={nestOneGroup} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("nestonegroup");
+              }}
+              src={nestOneGroupFallback}
+              className={classes.nestOneGroup}
+              alt="Nest One"
+              ref={parallaxRefs[1] as ImgRef}
+              data-speedx="0.13"
+              data-speedy="0.1"
+              data-centerationx="-2%"
+              data-centerationy="-5%"
+              data-speedz="1"
+              data-distance="200"
+              data-rotation="0.2"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={tvTower} type="image/webp" />
+
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("tvtower");
+              }}
+              src={tvTowerFallback}
+              className={classes.tvTower}
+              alt="Nest One"
+              ref={parallaxRefs[2] as ImgRef}
+              data-speedx="0.07"
+              data-speedy="0.05"
+              data-centerationx="-12%"
+              data-centerationy="-5%"
+              data-speedz="1"
+              data-distance="200"
+              data-rotation="0.1"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={fog4} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("fog4");
+              }}
+              src={fog4Fallback}
+              className={classes.fog4}
+              alt="Fog_4"
+              ref={parallaxRefs[3] as ImgRef}
+              data-speedx="0.18"
+              data-speedy="0.12"
+              data-centerationx="-12%"
+              data-centerationy="-5%"
+              data-speedz="0.1"
+              data-distance="200"
+              data-rotation="0.1"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={interContinental} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("intercontinental");
+              }}
+              src={interContinentalFallback}
+              className={classes.interContinental}
+              alt="InterContinental"
+              ref={parallaxRefs[4] as ImgRef}
+              data-speedx="0.11"
+              data-speedy="0.1"
+              data-centerationx="-2%"
+              data-centerationy="-5%"
+              data-speedz="1"
+              data-distance="200"
+              data-rotation="0.1"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={interContinentalFog} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("intercontinentalfog");
+              }}
+              src={interContinentalFogFallback}
+              className={classes.interContinentalFog}
+              alt="InterContinentalFog"
+              ref={parallaxRefs[5] as ImgRef}
+              data-speedx="0.18"
+              data-speedy="0.12"
+              data-centerationx="-2%"
+              data-centerationy="-5%"
+              data-speedz="0.1"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={nbuGroup} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("nbugroup");
+              }}
+              src={nbuGroupFallback}
+              className={classes.nbuGroup}
+              alt="NbuGroup"
+              ref={parallaxRefs[6] as ImgRef}
+              data-speedx="0.11"
+              data-speedy="0.1"
+              data-centerationx="-2%"
+              data-centerationy="-5%"
+              data-speedz="2"
+              data-distance="200"
+              data-rotation="0.1"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={nbuGroupFog} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("nbugroupfog");
+              }}
+              src={nbuGroupFogFallback}
+              className={classes.nbuGroupFog}
+              alt="NbuGroupFog"
+              ref={parallaxRefs[7] as ImgRef}
+              data-speedx="0.18"
+              data-speedy="0.12"
+              data-centerationx="-2%"
+              data-centerationy="-5%"
+              data-speedz="0.3"
+              data-distance="200"
+              data-rotation="0.1"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={hiltonGroup} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("hiltongroup");
+              }}
+              src={hiltonGroupFallback}
+              className={classes.hiltonGroup}
+              alt="HiltonGroup"
+              ref={parallaxRefs[8] as ImgRef}
+              data-speedx="0.1"
+              data-speedy="0.05"
+              data-centerationx="-15%"
+              data-centerationy="-5%"
+              data-speedz="0.8"
+              data-distance="200"
+              data-rotation="0.1"
+              aria-hidden
+            />
+          </picture>
+          <picture>
+            <source srcSet={hiltonGroupFog} type="image/webp" />
+            <img
+              loading="lazy"
+              onLoad={() => {
+                console.log("hiltongroupfog");
+              }}
+              src={hiltonGroupFogFallback}
+              className={classes.hiltonGroupFog}
+              alt="HiltonGroupFog"
+              ref={parallaxRefs[9] as ImgRef}
+              data-speedx="0.18"
+              data-speedy="0.12"
+              data-centerationx="-2%"
+              data-centerationy="-5%"
+              data-speedz="0.1"
+              data-distance="200"
+              data-rotation="0.01"
+              aria-hidden
+            />
+          </picture>
         </Paper>
       </Paper>
     </Grow>
