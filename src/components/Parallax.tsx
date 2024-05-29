@@ -354,8 +354,8 @@ const Parallax = () => {
           <h1 className={classes.text}>Tashkent</h1>
           <picture>
             <source srcSet={wallpaper} type="image/webp" />
+            <source srcSet={wallpaper} type="image/jpeg" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("wallpaper loaded");
               }}
@@ -376,7 +376,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={nestOneGroup} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("nestonegroup");
               }}
@@ -398,7 +397,6 @@ const Parallax = () => {
             <source srcSet={tvTower} type="image/webp" />
 
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("tvtower");
               }}
@@ -419,7 +417,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={fog4} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("fog4");
               }}
@@ -440,7 +437,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={interContinental} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("intercontinental");
               }}
@@ -461,7 +457,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={interContinentalFog} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("intercontinentalfog");
               }}
@@ -480,7 +475,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={nbuGroup} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("nbugroup");
               }}
@@ -501,7 +495,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={nbuGroupFog} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("nbugroupfog");
               }}
@@ -522,7 +515,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={hiltonGroup} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("hiltongroup");
               }}
@@ -543,7 +535,6 @@ const Parallax = () => {
           <picture>
             <source srcSet={hiltonGroupFog} type="image/webp" />
             <img
-              loading="lazy"
               onLoad={() => {
                 console.log("hiltongroupfog");
               }}
