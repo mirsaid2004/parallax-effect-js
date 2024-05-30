@@ -367,7 +367,7 @@ const Parallax = () => {
       window.addEventListener("deviceorientation", handleOrientation);
       setPermissionStatus(true);
     }
-  }, []);
+  }, [handleOrientation, permissionStatus]);
   useEffect(() => {
     mainRef?.current?.addEventListener("mousemove", handleMouseMove);
     requestDeviceOrientationPermission();
