@@ -1,6 +1,13 @@
 import { Grow, Paper } from "@mui/material";
 import { makeStyles } from "../styles";
-import { RefObject, createRef, useCallback, useEffect, useRef } from "react";
+import {
+  RefObject,
+  createRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import wallpaper from "../assets/wallpaper-min.webp";
 import wallpaperFallback from "../assets/wallpaper-min.jpg";
 import nestOneGroup from "../assets/Nest_One_group-min.webp";
@@ -266,6 +273,7 @@ const useStyles = makeStyles()((theme) => ({
 
 const Parallax = () => {
   const { classes, cx } = useStyles();
+  const [permissionStatus, setPermissionStatus] = useState(false);
   const parallaxRefs: Array<RefObject<HTMLImageElement>> = [
     ...new Array(10),
   ].map(() => createRef());
@@ -325,39 +333,37 @@ const Parallax = () => {
   useEffect(() => {
     updateParallaxEffect(0, 0);
   }, [parallaxRefs, updateParallaxEffect]);
+  const handleMouseMove = throttle((e: MouseEvent) => {
+    const xValue = e.clientX - window.innerWidth / 2;
+    const yValue = e.clientY - window.innerHeight / 2;
+    updateParallaxEffect(xValue, yValue);
+  }, 100);
+  const handleOrientation = throttle((event: DeviceOrientationEvent) => {
+    const { gamma, beta } = event;
+    if (gamma !== null && beta !== null) {
+      updateParallaxEffect(gamma * 6, beta * 10);
+    }
+  }, 100);
+  const requestDeviceOrientationPermission = useCallback(() => {
+    if (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof DeviceOrientationEvent.requestPermission === "function" &&
+      !permissionStatus
+    ) {
+      DeviceOrientationEvent.requestPermission()
+        .then((response: string) => {
+          if (response === "granted") {
+            setPermissionStatus(true);
+            window.addEventListener("deviceorientation", handleOrientation);
+          }
+        })
+        .catch(console.error);
+    } else {
+      // Handle non-iOS 13+ devices
+      window.addEventListener("deviceorientation", handleOrientation);
+    }
+  }, []);
   useEffect(() => {
-    const handleMouseMove = throttle((e: MouseEvent) => {
-      const xValue = e.clientX - window.innerWidth / 2;
-      const yValue = e.clientY - window.innerHeight / 2;
-      updateParallaxEffect(xValue, yValue);
-    }, 100);
-    const handleOrientation = throttle((event: DeviceOrientationEvent) => {
-      const { gamma, beta } = event;
-      if (gamma !== null && beta !== null) {
-        updateParallaxEffect(gamma * 6, beta * 10);
-      }
-    }, 100);
-    const requestDeviceOrientationPermission = () => {
-      const deviceorientation = DeviceOrientationEvent as unknown as {
-        requestPermission?: () => Promise<"granted" | "denied">;
-      };
-      if (
-        typeof deviceorientation !== "undefined" &&
-        typeof deviceorientation.requestPermission === "function"
-      ) {
-        deviceorientation
-          .requestPermission()
-          .then((response: string) => {
-            if (response === "granted") {
-              window.addEventListener("deviceorientation", handleOrientation);
-            }
-          })
-          .catch(console.error);
-      } else {
-        // Handle non-iOS 13+ devices
-        window.addEventListener("deviceorientation", handleOrientation);
-      }
-    };
     mainRef?.current?.addEventListener("mousemove", handleMouseMove);
     requestDeviceOrientationPermission();
 
@@ -366,10 +372,20 @@ const Parallax = () => {
       mainRef?.current?.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("deviceorientation", handleOrientation);
     };
-  }, [parallaxRefs, updateParallaxEffect]);
+  }, [
+    handleMouseMove,
+    handleOrientation,
+    parallaxRefs,
+    requestDeviceOrientationPermission,
+    updateParallaxEffect,
+  ]);
   return (
     <Grow in={true} style={{ transformOrigin: "center center" }} timeout={500}>
-      <Paper ref={mainRef} className={classes.paper}>
+      <Paper
+        ref={mainRef}
+        className={classes.paper}
+        onClick={requestDeviceOrientationPermission}
+      >
         <Paper className={cx(classes.paper)}>
           <div className={classes.vignet}></div>
           <h1 className={classes.text}>Tashkent</h1>
