@@ -345,12 +345,16 @@ const Parallax = () => {
     }
   }, 100);
   const requestDeviceOrientationPermission = useCallback(() => {
+    const deviceorientation = DeviceOrientationEvent as unknown as {
+      requestPermission?: () => Promise<"granted" | "denied">;
+    };
     if (
-      typeof DeviceOrientationEvent !== "undefined" &&
-      typeof DeviceOrientationEvent.requestPermission === "function" &&
+      typeof deviceorientation !== "undefined" &&
+      typeof deviceorientation.requestPermission === "function" &&
       !permissionStatus
     ) {
-      DeviceOrientationEvent.requestPermission()
+      deviceorientation
+        .requestPermission()
         .then((response: string) => {
           if (response === "granted") {
             setPermissionStatus(true);
@@ -361,6 +365,7 @@ const Parallax = () => {
     } else {
       // Handle non-iOS 13+ devices
       window.addEventListener("deviceorientation", handleOrientation);
+      setPermissionStatus(true);
     }
   }, []);
   useEffect(() => {
@@ -379,6 +384,7 @@ const Parallax = () => {
     requestDeviceOrientationPermission,
     updateParallaxEffect,
   ]);
+  console.log(permissionStatus);
   return (
     <Grow in={true} style={{ transformOrigin: "center center" }} timeout={500}>
       <Paper
